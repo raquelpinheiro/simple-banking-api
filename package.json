@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/raquelpinheiro/simple-banking-api/"
   },
-  "homepage": "https://github.com/raquelpinheiro/simple-banking-api#readme"
+  "homepage": "https://github.com/raquelpinheiro/simple-banking-api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
 }
