@@ -1,0 +1,19 @@
+{
+  "name": "simple-banking-api",
+  "version": "1.0.0",
+  "description": "Simple operations banking API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raquelpinheiro/simple-banking-api.git"
+  },
+  "author": "Raquel de Jesus Pinheiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raquelpinheiro/simple-banking-api/issues"
+  },
+  "homepage": "https://github.com/raquelpinheiro/simple-banking-api#readme"
+}
