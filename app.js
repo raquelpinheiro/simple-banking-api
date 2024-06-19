@@ -10,7 +10,8 @@ app.use(accountRoutes);
 app.use((error, req, res, next) => {
   let statusCode = !error.statusCode;
   if (!statusCode) statusCode = 500;
-  res.status(statusCode).json({ message: error.message });
+  console.error(error);
+  res.status(500).json({ message: error.message });
 });
 
-app.listen(5001);
+app.listen(5002);
