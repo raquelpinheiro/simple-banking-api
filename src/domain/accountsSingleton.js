@@ -9,5 +9,8 @@ class AccountsSingleton {
     }
     return this.instance;
   }
+  static resetInstance() {
+    this.instance = null;
+  }
 }
 module.exports = AccountsSingleton;
