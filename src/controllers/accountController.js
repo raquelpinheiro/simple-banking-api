@@ -1,21 +1,33 @@
-const accountService = require('../domain/services/accountService');
-const AccountViewModel = require('../controllers/viewModels/accountViewModel');
-const DestinationViewModel = require('./viewModels/destinationViewModel');
+const AccountService = require('../domain/services/accountService');
+const CreateAccountViewModel = require('../controllers/viewModels/createAccountViewModel');
+const WithdrawViewModel = require('../controllers/viewModels/withdrawViewModel');
 
 exports.eventsToAccount = (req, res, next) => {
-  const id = Number(req.body.destination);
+  let id = 0;
   const amount = req.body.amount;
   const type = req.body.type;
-  let service = new accountService();
+  let service = new AccountService();
   if (type === 'deposit') {
+    id = Number(req.body.destination);
     let account = service.createAccount(id);
-    service.depositAccount(account, amount);
-    res.status(201).json(getAccountToViewModel(account));
+    if (account) {
+      service.depositAccount(account, amount);
+      res.status(201).json(new CreateAccountViewModel(account));
+    }
+  } else if (type === 'withdraw') {
+    id = Number(req.body.origin);
+    let account = service.getAccountById(id);
+    if (!account) {
+      res.status(404).json(0);
+    } else {
+      service.withdraw(account, amount);
+      res.status(201).json(new WithdrawViewModel(account));
+    }
   }
 };
 exports.findAccount = (req, res, next) => {
   const id = Number(req.query.account_id);
-  let service = new accountService();
+  let service = new AccountService();
   const account = service.getAccountById(id);
   if (!account) {
     res.status(404).json(0);
@@ -23,8 +35,3 @@ exports.findAccount = (req, res, next) => {
     res.status(200).json(account.balance);
   }
 };
-function getAccountToViewModel(account) {
-  return new DestinationViewModel(
-    new AccountViewModel(account.id.toString(), account.getBalance()),
-  );
-}

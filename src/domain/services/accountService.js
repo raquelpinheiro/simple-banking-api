@@ -14,16 +14,26 @@ class AccountService {
     return account;
   }
   depositAccount(account, amount) {
-    if (account) {
-      account.deposit(amount);
+    if (isNaN(amount) || typeof amount !== 'number') {
+      return null;
     }
-    return account;
+    if (account) account.deposit(amount);
   }
   getAccountById(id) {
     if (isNaN(id) || typeof id !== 'number') {
       return null;
     }
     return this._accountsIntance.accounts.find((c) => c.id == id);
+  }
+  withdraw(account, amount) {
+    if (
+      isNaN(amount) ||
+      typeof amount !== 'number' ||
+      typeof account === 'AccountModel'
+    ) {
+      return null;
+    }
+    if (account) account.withdraw(amount);
   }
 }
 module.exports = AccountService;
