@@ -6,8 +6,8 @@ class AccountService {
     this._accountsIntance = AccountsSingleton.getInstance;
   }
   createAccount(id) {
-    let account;
-    if (!this._accountsIntance.accounts.includes((c) => c.id == id)) {
+    let account = this._accountsIntance.accounts.find((c) => c.id === id);
+    if (!account) {
       account = new AccountModel(id);
       this._accountsIntance.accounts.push(account);
     }
@@ -23,7 +23,10 @@ class AccountService {
     return accountUpdated;
   }
   getAccountById(id) {
-    return this.accounts.find((c) => c.id == id);
+    if (isNaN(id) || typeof id !== 'number') {
+      return null;
+    }
+    return this._accountsIntance.accounts.find((c) => c.id == id);
   }
 }
 module.exports = AccountService;
