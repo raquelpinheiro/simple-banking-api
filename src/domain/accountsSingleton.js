@@ -10,7 +10,7 @@ class AccountsSingleton {
     return this.instance;
   }
   static resetInstance() {
-    this.instance = null;
+    this.instance = undefined;
   }
 }
 module.exports = AccountsSingleton;
