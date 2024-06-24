@@ -26,14 +26,15 @@ class AccountService {
     return this._accountsIntance.accounts.find((c) => c.id == id);
   }
   withdraw(account, amount) {
-    if (
-      isNaN(amount) ||
-      typeof amount !== 'number' ||
-      typeof account === 'AccountModel'
-    ) {
+    if (isNaN(amount) || typeof amount !== 'number') {
       return null;
     }
     if (account) account.withdraw(amount);
+  }
+  transfer(originAccount, amount, destinationAccount) {
+    if (!originAccount || !destinationAccount) return undefined;
+    originAccount.withdraw(amount);
+    destinationAccount.deposit(amount);
   }
 }
 module.exports = AccountService;
