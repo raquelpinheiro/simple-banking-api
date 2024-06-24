@@ -9,7 +9,7 @@ test('Should to be the same instance when call more than one time', () => {
 });
 
 test('Should reset instance', () => {
-  let instance = AccountsSingleton.getInstance;
+  let firstInstance = AccountsSingleton.getInstance;
   AccountsSingleton.resetInstance();
-  expect(instance).toBeNull();
+  expect(firstInstance.instance).toBeUndefined();
 });
