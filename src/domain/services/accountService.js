@@ -13,14 +13,11 @@ class AccountService {
     }
     return account;
   }
-  depositAccount(id, amount) {
-    let accountUpdated;
-    let index = this._accountsIntance.accounts.findIndex((c) => c.id == id);
-    if (index >= 0) {
-      accountUpdated = this._accountsIntance.accounts[index];
-      accountUpdated.deposit(amount);
+  depositAccount(account, amount) {
+    if (account) {
+      account.deposit(amount);
     }
-    return accountUpdated;
+    return account;
   }
   getAccountById(id) {
     if (isNaN(id) || typeof id !== 'number') {

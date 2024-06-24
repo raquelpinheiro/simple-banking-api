@@ -9,7 +9,7 @@ exports.eventsToAccount = (req, res, next) => {
   let service = new accountService();
   if (type === 'deposit') {
     let account = service.createAccount(id);
-    account.deposit(amount);
+    service.depositAccount(account, amount);
     res.status(201).json(getAccountToViewModel(account));
   }
 };
@@ -23,9 +23,8 @@ exports.findAccount = (req, res, next) => {
     res.status(200).json(account.balance);
   }
 };
-
 function getAccountToViewModel(account) {
   return new DestinationViewModel(
-    new AccountViewModel(account.id.toString(), account.balance),
+    new AccountViewModel(account.id.toString(), account.getBalance()),
   );
 }
