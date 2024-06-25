@@ -11,7 +11,7 @@ class AccountModel {
     return this.balance;
   }
   withdraw(amount) {
-    this.balance -= amount;
+    this.balance = this.balance - amount;
   }
 }
 module.exports = AccountModel;

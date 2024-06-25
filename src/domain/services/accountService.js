@@ -15,7 +15,7 @@ class AccountService {
   }
   depositAccount(account, amount) {
     if (isNaN(amount) || typeof amount !== 'number') {
-      return null;
+      return;
     }
     if (account) account.deposit(amount);
   }
@@ -27,12 +27,12 @@ class AccountService {
   }
   withdraw(account, amount) {
     if (isNaN(amount) || typeof amount !== 'number') {
-      return null;
+      return;
     }
     if (account) account.withdraw(amount);
   }
   transfer(originAccount, amount, destinationAccount) {
-    if (!originAccount || !destinationAccount) return undefined;
+    if (!originAccount || !destinationAccount) return;
     originAccount.withdraw(amount);
     destinationAccount.deposit(amount);
   }
