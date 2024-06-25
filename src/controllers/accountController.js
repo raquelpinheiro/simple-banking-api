@@ -56,7 +56,7 @@ function transfer(req, res, next) {
   if (!originAccount) {
     res.status(404).json(0);
   } else {
-    let destinationAccount = service.getAccountById(destinationId);
+    let destinationAccount = service.createAccount(destinationId);
     if (!destinationAccount) res.status(404).json(0);
 
     service.transfer(originAccount, amount, destinationAccount);
